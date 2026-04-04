@@ -7,7 +7,8 @@
     * Kubernetes API Server
     * etcd
     * Controller Manager
-    * Scheduler    
+    * Scheduler
+       
 👉 Important:
 * Control plane runs in AWS account (not yours)
 * You only interact via API endpoint
