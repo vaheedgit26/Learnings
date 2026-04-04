@@ -169,7 +169,8 @@ https://oidc.eks.region.amazonaws.com/id/EXAMPLE/.well-known/jwks.json
 This is where people get confused  
 🧩 Old Way (deprecated)  
    * Token stored as secret  
-   * Long-lived  
+   * Long-lived
+     
 ✅ **New Way (Projected Volume)**  
 Kubernetes injects token into Pod:  
 ```text
