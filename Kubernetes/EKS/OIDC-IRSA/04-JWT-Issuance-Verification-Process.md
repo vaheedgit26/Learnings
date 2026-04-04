@@ -1,6 +1,6 @@
-## END-TO-END FLOW: EKS → POD → IRSA → TEMP AWS CREDENTIALS
+### END-TO-END FLOW: EKS → POD → IRSA → TEMP AWS CREDENTIALS
 ---
-🧱 1. EKS CLUSTER CREATION (FOUNDATION)
+##🧱 1. EKS CLUSTER CREATION (FOUNDATION)
 **When you create an EKS cluster:**    
 👉 AWS creates:
 * Managed Control Plane (AWS-owned)
@@ -12,3 +12,7 @@
 👉 Important:
 * Control plane runs in AWS account (not yours)
 * You only interact via API endpoint
+👉 You configure:
+* VPC, Subnets
+* Node Groups (EC2 or Fargate)
+* IAM Role for cluster
