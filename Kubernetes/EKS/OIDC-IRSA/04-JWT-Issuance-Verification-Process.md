@@ -18,7 +18,7 @@
 * Node Groups (EC2 or Fargate)
 * IAM Role for cluster
 
-👉 **CRITICAL: OIDC PROVIDER CREATION**
+👉 **CRITICAL: OIDC PROVIDER CREATION**  
 When you run:
 ```bash
 eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
