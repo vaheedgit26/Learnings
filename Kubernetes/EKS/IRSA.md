@@ -63,3 +63,10 @@ https://oidc.eks.region.amazonaws.com/id/XXXXXXXX
 * No static credentials
 * Fine-grained IAM roles per workload
 * More secure and scalable
+
+## 🛡️ Example Use Case
+With Argo CD:
+* Argo CD needs to access AWS (e.g., S3, ECR)
+* Instead of keys:
+  * Use OIDC + IRSA
+  * Assign IAM role to its service account
