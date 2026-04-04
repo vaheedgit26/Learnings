@@ -17,3 +17,5 @@
 * VPC, Subnets
 * Node Groups (EC2 or Fargate)
 * IAM Role for cluster
+
+👉 **CRITICAL: OIDC PROVIDER CREATION**
