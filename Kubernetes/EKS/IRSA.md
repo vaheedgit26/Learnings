@@ -30,3 +30,8 @@ Using IAM Roles for Service Accounts:
 * Calls AWS STS: **`AssumeRoleWithWebIdentity`**
 * AWS validates token via OIDC
 * Temporary credentials are returned
+
+## 📊 Architecture View  
+```text
+Pod → Service Account → OIDC Token → AWS STS → IAM Role → Access AWS
+```
