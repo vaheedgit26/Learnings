@@ -15,14 +15,14 @@ OIDC is an identity layer built on OAuth 2.0 that:
 * Verifies who a workload is
 * Lets AWS trust that identity
 
-⚙️ How OIDC Works in EKS
+## ⚙️ How OIDC Works in EKS
 When you create an EKS cluster:    
 - EKS automatically provides an OIDC issuer URL  
 - This issuer is linked to your cluster  
 - Kubernetes service accounts get JWT tokens   
 - AWS verifies these tokens via OIDC  
 
-🔁 Flow with IRSA (Real-world)  
+## 🔁 Flow with IRSA (Real-world)  
 Using IAM Roles for Service Accounts:  
 * Pod uses a Kubernetes Service Account
 * Service account is linked to an IAM Role
