@@ -17,7 +17,17 @@ It’s an identity layer built on OAuth 2.0 that:
 
 ⚙️ How OIDC Works in EKS
 When you create an EKS cluster:
-* EKS automatically provides an OIDC issuer URL
-* This issuer is linked to your cluster
-* Kubernetes service accounts get JWT tokens
-* AWS verifies these tokens via OIDC
+1 EKS automatically provides an OIDC issuer URL
+2 This issuer is linked to your cluster
+3 Kubernetes service accounts get JWT tokens
+4 AWS verifies these tokens via OIDC
+
+🔁 Flow with IRSA (Real-world)  
+Using IAM Roles for Service Accounts:  
+* Pod uses a Kubernetes Service Account
+* Service account is linked to an IAM Role
+* Pod gets a JWT token from OIDC provider
+* Calls AWS STS:
+* AssumeRoleWithWebIdentity
+* AWS validates token via OIDC
+* Temporary credentials are returned
