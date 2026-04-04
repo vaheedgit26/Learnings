@@ -51,3 +51,15 @@ https://oidc.eks.region.amazonaws.com/id/XXXXXXXX
     * service account name
     * namespace
     * cluster identity
+
+3. STS (Security Token Service)
+* AWS service that validates token
+* Returns temporary credentials
+
+## 🔥 Why OIDC is Important in EKS
+**❌ Before (Bad Practice)**
+* Store AWS keys inside pods
+**✅ With OIDC + IRSA**
+* No static credentials
+* Fine-grained IAM roles per workload
+* More secure and scalable
