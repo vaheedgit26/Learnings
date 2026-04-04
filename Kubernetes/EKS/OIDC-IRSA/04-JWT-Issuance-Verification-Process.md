@@ -23,7 +23,7 @@ When you run:
 ```bash
 eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
 ```
-**(or)
+**(or)**
 ```hcl
 # OIDC Provider for IRSA
 data "tls_certificate" "eks" {
@@ -42,7 +42,7 @@ resource "aws_iam_openid_connect_provider" "eks" {
   }
 }
 ```
-**What happens internally:**
+## What happens internally:
 * EKS exposes an OIDC issuer URL like:
 ```text
 https://oidc.eks.<region>.amazonaws.com/id/XXXXXXXX
