@@ -135,7 +135,7 @@ With Argo CD:
 ❌ Missing annotation on service account  
 ❌ Using wildcard (*) in trust policy (security risk)  
 
-🚀 Pro Tips (From Production Experience)
+## 🚀 Pro Tips (From Production Experience)
 * Use least privilege policies
 * Use separate IAM roles per workload
 * Audit via CloudTrail
