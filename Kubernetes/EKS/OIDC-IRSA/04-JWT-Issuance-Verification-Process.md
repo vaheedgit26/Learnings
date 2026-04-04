@@ -1,6 +1,6 @@
 ### END-TO-END FLOW: EKS → POD → IRSA → TEMP AWS CREDENTIALS
 ---
-## 🧱 1. EKS CLUSTER CREATION (FOUNDATION)
+## 🧱 STEP 1. EKS CLUSTER CREATION (FOUNDATION)
 **When you create an EKS cluster:**    
 👉 **AWS creates:**
 * Managed Control Plane (AWS-owned)
@@ -70,7 +70,7 @@ Answer: The Kubernetes API Server (managed by AWS in EKS) creates the key pair.
 https://oidc.eks.<region>.amazonaws.com/id/<cluster-id>/.well-known/jwks.json
 ```
 
-## 2. CREATE IAM ROLE FOR POD (IRSA ROLE)
+## STEP 2. CREATE IAM ROLE FOR POD (IRSA ROLE)
 Trust Policy (CRITICAL)
 ```json
 {
@@ -98,7 +98,7 @@ sub = system:serviceaccount:<namespace>:<serviceaccount-name>
 This binds:   
 👉 ONLY that ServiceAccount can assume the role  
 
-## 3. CREATE KUBERNETES SERVICE ACCOUNT
+## STEP 3. CREATE KUBERNETES SERVICE ACCOUNT
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -112,7 +112,7 @@ metadata:
 It tells Kubernetes:  
 👉 “When a Pod uses this ServiceAccount, inject AWS identity logic”
 
-## 4. SERVICE ACCOUNT TOKEN (JWT CREATION)
+## STEP 4. SERVICE ACCOUNT TOKEN (JWT CREATION)
 Now we go deep.  
 ---
 🧬 JWT STRUCTURE (ACTUAL FORMAT)   
@@ -165,7 +165,7 @@ How?
 https://oidc.eks.region.amazonaws.com/id/EXAMPLE/.well-known/jwks.json
 ```
 
-## 📦 5. TOKEN DELIVERY TO POD
+## 📦 STEP 5. TOKEN DELIVERY TO POD
 This is where people get confused  
 🧩 Old Way (deprecated)  
    * Token stored as secret  
