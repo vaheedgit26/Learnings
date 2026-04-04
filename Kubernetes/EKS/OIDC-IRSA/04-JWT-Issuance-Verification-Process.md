@@ -49,6 +49,15 @@ https://oidc.eks.<region>.amazonaws.com/id/XXXXXXXX
 ```
 * AWS IAM stores this as a trusted identity provider  
 👉 `This is the bridge between Kubernetes & AWS IAM`
+
+This creates in IAM:  
+```text
+IAM → Identity Provider → OIDC Provider
+```
+Contains:
+* Issuer URL
+* Thumbprint (TLS cert hash)
+* Audience (sts.amazonaws.com)
  
 🔑 What AWS generates for OIDC:  
 * Public/Private key pair  
