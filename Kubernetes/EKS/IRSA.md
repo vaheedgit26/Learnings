@@ -14,3 +14,12 @@ It’s an identity layer built on OAuth 2.0 that:
 * Issues signed tokens (JWTs)
 * Verifies who a workload is
 * Lets AWS trust that identity
+
+⚙️ How OIDC Works in EKS
+
+When you create an EKS cluster:
+
+* EKS automatically provides an OIDC issuer URL
+* This issuer is linked to your cluster
+* Kubernetes service accounts get JWT tokens
+* AWS verifies these tokens via OIDC
