@@ -120,7 +120,7 @@ A Kubernetes ServiceAccount token is a JWT:
 ```text
 HEADER.PAYLOAD.SIGNATURE
 ```
-🧾 **HEADER**
+🧾 **HEADER:**
 ```json
 {
   "alg": "RS256",
@@ -130,8 +130,7 @@ HEADER.PAYLOAD.SIGNATURE
 * `RS256` → RSA SHA256 signing
 * `kid` → key ID for public key lookup
 
-📦 **PAYLOAD (VERY IMPORTANT)**
-
+📦 **PAYLOAD (VERY IMPORTANT):**
 ```json
 {
   "iss": "https://oidc.eks.region.amazonaws.com/id/EXAMPLE",
@@ -149,13 +148,37 @@ HEADER.PAYLOAD.SIGNATURE
 }
 ```
 
-✍️ **SIGNATURE**
-
+✍️ **SIGNATURE:**
 ```text
 RSA-SHA256(
   base64url(header) + "." + base64url(payload),
   PRIVATE_KEY
 )
+```
+
+🔐 **WHO SIGNS THE TOKEN?**
+👉 Kubernetes API Server
+How?
+* Uses private key stored in control plane
+* Public key exposed via OIDC endpoint:
+```text
+https://oidc.eks.region.amazonaws.com/id/EXAMPLE/.well-known/jwks.json
+```
+
+📦 5. TOKEN DELIVERY TO POD
+This is where people get confused
+🧩 Old Way (deprecated)
+   * Token stored as secret
+   * Long-lived
+✅ **New Way (Projected Volume)**
+Kubernetes injects token into Pod:
+```text
+/var/run/secrets/eks.amazonaws.com/serviceaccount/token
+```
+YAML inside Pod:
+```yaml
+spec:
+  serviceAccountName: my-sa
 ```
 
 
