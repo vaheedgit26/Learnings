@@ -2,18 +2,18 @@
 ---
 ##🧱 1. EKS CLUSTER CREATION (FOUNDATION)
 **When you create an EKS cluster:**    
-👉 AWS creates:
+👉 **AWS creates:**
 * Managed Control Plane (AWS-owned)
     * Kubernetes API Server
     * etcd
     * Controller Manager
     * Scheduler
        
-👉 Important:
+👉 **Important:**
 * Control plane runs in AWS account (not yours)
 * You only interact via API endpoint
 
-👉 You configure:
+👉 **You configure:**
 * VPC, Subnets
 * Node Groups (EC2 or Fargate)
 * IAM Role for cluster
