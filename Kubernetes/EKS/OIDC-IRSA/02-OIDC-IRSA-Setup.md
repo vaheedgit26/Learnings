@@ -111,8 +111,7 @@ Pod → ServiceAccount → OIDC JWT Token
     → IAM Role → Temporary Credentials
 ```
 ---
-## 🧠 Trust Policy Deep Explanation (Interview Gold)
----
+## 🧠 Trust Policy Deep Explanation (Interview Gold)  
 This line is critical: 
 ```json
 "<OIDC_PROVIDER>:sub": "system:serviceaccount:default:my-service-account"
@@ -120,4 +119,26 @@ This line is critical:
 👉 Meaning:  
 * Only this exact service account can assume the role
 * Prevents privilege escalation
+---
+## 🔥 Real-World Example (Argo CD)
+---
+With Argo CD:
+* Namespace: `argocd`
+* ServiceAccount: `argocd-application-controller`
+```json
+"sub": "system:serviceaccount:argocd:argocd-application-controller"
+```
+
+## ⚠️ Common Mistakes  
+❌ Forgetting OIDC provider setup  
+❌ Wrong namespace in trust policy  
+❌ Missing annotation on service account  
+❌ Using wildcard (*) in trust policy (security risk)  
+
+🚀 Pro Tips (From Production Experience)
+* Use least privilege policies
+* Use separate IAM roles per workload
+* Audit via CloudTrail
+* Avoid sharing roles across namespaces
+
 
