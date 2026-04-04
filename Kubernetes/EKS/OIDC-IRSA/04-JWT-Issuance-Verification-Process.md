@@ -59,6 +59,13 @@ Contains:
 * Thumbprint (TLS cert hash)
 * Audience (sts.amazonaws.com)
  
-🔑 What AWS generates for OIDC:  
-* Public/Private key pair  
-* Used to sign Kubernetes Service Account tokens (JWT)  
+🔑 Who Creates the Key Pair for ServiceAccount JWTs?  
+Answer: The Kubernetes API Server (managed by AWS in EKS) creates the key pair.  
+* Private key → used to sign JWT tokens for ServiceAccounts.
+  * Stored inside the EKS managed control plane.
+  * You cannot access it; AWS keeps it secure.
+* Public key → used to verify JWT tokens.
+  * Exposed via the cluster’s OIDC endpoint, e.g.:
+```text
+https://oidc.eks.<region>.amazonaws.com/id/<cluster-id>/.well-known/jwks.json
+```
