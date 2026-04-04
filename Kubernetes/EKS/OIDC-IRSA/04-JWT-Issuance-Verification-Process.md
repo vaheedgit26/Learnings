@@ -165,18 +165,18 @@ How?
 https://oidc.eks.region.amazonaws.com/id/EXAMPLE/.well-known/jwks.json
 ```
 
-📦 5. TOKEN DELIVERY TO POD
-This is where people get confused
-🧩 Old Way (deprecated)
-   * Token stored as secret
-   * Long-lived
-✅ **New Way (Projected Volume)**
-Kubernetes injects token into Pod:
+## 📦 5. TOKEN DELIVERY TO POD
+This is where people get confused  
+🧩 Old Way (deprecated)  
+   * Token stored as secret  
+   * Long-lived  
+✅ **New Way (Projected Volume)**  
+Kubernetes injects token into Pod:  
 ```text
 /var/run/secrets/eks.amazonaws.com/serviceaccount/token
 ```
-YAML inside Pod:
-```yaml
+YAML inside Pod:  
+```yaml  
 spec:
   serviceAccountName: my-sa
 ```
