@@ -296,12 +296,12 @@ Now Pod can:
 +------------------------+
 ```
 ## ⚠️ COMMON INTERVIEW TRAPS (VERY IMPORTANT)
-❌ **Myth:**  
+❌ Myth: 
 “API server sends JWT to AWS”  
 
 👉 WRONG   
 ✔ Pod sends JWT to AWS STS  
-
+---
 ❌ Myth:   
 “IAM trusts Kubernetes”  
 
