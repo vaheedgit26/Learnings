@@ -111,7 +111,7 @@ Pod → ServiceAccount → OIDC JWT Token
     → IAM Role → Temporary Credentials
 ```
 ---
-##🧠 Trust Policy Deep Explanation (Interview Gold)
+## 🧠 Trust Policy Deep Explanation (Interview Gold)
 ---
 This line is critical: 
 ```json
