@@ -47,7 +47,7 @@ resource "aws_iam_openid_connect_provider" "eks" {
 ```text
 https://oidc.eks.<region>.amazonaws.com/id/XXXXXXXX
 ```
-* AWS IAM stores this as a trusted identity provider
+* AWS IAM stores this as a trusted identity provider  
 👉 This is the bridge between Kubernetes & AWS IAM
  
 🔑 What AWS generates for OIDC:  
