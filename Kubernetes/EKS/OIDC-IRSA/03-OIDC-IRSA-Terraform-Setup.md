@@ -200,9 +200,9 @@ Temporary Credentials
 ## ⚠️ Common Issues (Real Debugging)
 ❌ Access Denied
 - Check trust policy `sub` exactly matches:
-```text
-system:serviceaccount:<namespace>:<serviceaccount>
-```
+  ```text
+  system:serviceaccount:<namespace>:<serviceaccount>
+  ```
 
 ❌ No credentials
 - Check annotation exists:
