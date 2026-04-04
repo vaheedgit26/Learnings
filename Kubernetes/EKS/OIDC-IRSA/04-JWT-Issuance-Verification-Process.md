@@ -98,7 +98,7 @@ sub = system:serviceaccount:<namespace>:<serviceaccount-name>
 This binds:   
 👉 ONLY that ServiceAccount can assume the role  
 
-## CREATE KUBERNETES SERVICE ACCOUNT
+## 3. CREATE KUBERNETES SERVICE ACCOUNT
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -112,16 +112,50 @@ metadata:
 It tells Kubernetes:  
 👉 “When a Pod uses this ServiceAccount, inject AWS identity logic”
 
-## 3. SERVICE ACCOUNT TOKEN (JWT CREATION)
+## 4. SERVICE ACCOUNT TOKEN (JWT CREATION)
 Now we go deep.  
 ---
-🧬 JWT STRUCTURE (ACTUAL FORMAT)
+🧬 JWT STRUCTURE (ACTUAL FORMAT)   
 A Kubernetes ServiceAccount token is a JWT:
 ```text
 HEADER.PAYLOAD.SIGNATURE
 ```
----
+🧾 **HEADER**
+```json
+{
+  "alg": "RS256",
+  "kid": "EXAMPLE_KEY_ID"
+}
+```
+* `RS256` → RSA SHA256 signing
+* `kid` → key ID for public key lookup
 
+📦 **PAYLOAD (VERY IMPORTANT)**
 
+```json
+{
+  "iss": "https://oidc.eks.region.amazonaws.com/id/EXAMPLE",
+  "sub": "system:serviceaccount:default:my-sa",
+  "aud": ["sts.amazonaws.com"],
+  "kubernetes.io": {
+    "namespace": "default",
+    "serviceaccount": {
+      "name": "my-sa",
+      "uid": "uuid"
+    }
+  },
+  "exp": 1710000000,
+  "iat": 1709990000
+}
+```
+
+✍️ **SIGNATURE**
+
+```text
+RSA-SHA256(
+  base64url(header) + "." + base64url(payload),
+  PRIVATE_KEY
+)
+```
 
 
