@@ -186,7 +186,7 @@ spec:
 👉 Token is rotated automatically
 👉 Token audience = sts.amazonaws.com
 
-🔄 STEP 6: POD USES JWT → CALLS AWS STS
+## 🔄 STEP 6: POD USES JWT → CALLS AWS STS
 Inside the Pod:
 
 AWS SDK detects:
@@ -228,11 +228,12 @@ Verify using RSA public key
 ```
 
 4. Validate Claims
-| Claim | Checked                     |
-| ----- | --------------------------- |
-| iss   | matches OIDC provider       |
-| aud   | must be `sts.amazonaws.com` |
-| sub   | must match IAM trust policy |
+ 
+| Claim | Checked                     |   
+| ----- | --------------------------- |   
+| iss   | matches OIDC provider       |   
+| aud   | must be `sts.amazonaws.com` |   
+| sub   | must match IAM trust policy |   
 
 ## 🎯 STEP 8: TEMPORARY CREDENTIALS ISSUED
 If valid:
