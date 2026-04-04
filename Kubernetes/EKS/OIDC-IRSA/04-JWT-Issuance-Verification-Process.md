@@ -319,3 +319,36 @@ OIDC = Bridge
 AWS STS = Verifier + Credential Issuer
 Pod = Client
 ```
+
+### OIDC Issuer URL VS JWKS URL
+## 1️⃣ OIDC Issuer URL
+Example:  
+```text
+https://oidc.eks.<region>.amazonaws.com/id/XXXXXXXX
+```
+* Purpose: This is the “issuer” `(iss)` claim inside your Kubernetes ServiceAccount JWT.
+* Used by AWS STS to identify the cluster that issued the token.
+* Used in IAM OIDC provider creation: IAM uses this URL to know “I trust tokens issued by this issuer.”
+* This URL alone does not expose keys.
+
+## 2️⃣ JWKS URL  
+Example:
+```text
+https://oidc.eks.<region>.amazonaws.com/id/<cluster-id>/.well-known/jwks.json
+```
+* Purpose: This URL exposes the public keys (JWKS) that correspond to the private key used to sign JWTs.
+* AWS STS fetches this URL to verify JWT signatures.
+* This URL is defined in the OIDC “discovery document,” which lives at:
+```text
+https://oidc.eks.<region>.amazonaws.com/id/<cluster-id>/.well-known/openid-configuration
+```
+* The jwks_uri field in that discovery document points to the JWKS URL.
+
+## 3️⃣ How they relate   
+| URL                                                                         | Purpose                                | Used by                                    |  
+| --------------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------ |  
+| `https://oidc.eks.<region>.amazonaws.com/id/XXXXXXXX`                       | OIDC Issuer (`iss` claim)              | Kubernetes tokens, IAM OIDC provider trust |  
+| `https://oidc.eks.<region>.amazonaws.com/id/XXXXXXXX/.well-known/jwks.json` | Public keys for signature verification | AWS STS                                    |  
+
+✅ So: same base URL, but the JWKS URL is a subpath (.well-known/jwks.json) that exposes the public keys.
+
