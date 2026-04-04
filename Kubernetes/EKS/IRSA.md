@@ -35,3 +35,19 @@ Using IAM Roles for Service Accounts:
 ```text
 Pod → Service Account → OIDC Token → AWS STS → IAM Role → Access AWS
 ```
+
+## 🧠 Key Components  
+1. OIDC Provider
+* Created in AWS IAM
+* Trusts your EKS cluster
+* Example:
+```text
+https://oidc.eks.region.amazonaws.com/id/XXXXXXXX
+```
+
+2. JWT Token
+* Issued by Kubernetes
+* Contains:
+    * service account name
+    * namespace
+    * cluster identity
