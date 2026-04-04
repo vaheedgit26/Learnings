@@ -69,3 +69,51 @@ Answer: The Kubernetes API Server (managed by AWS in EKS) creates the key pair.
 ```text
 https://oidc.eks.<region>.amazonaws.com/id/<cluster-id>/.well-known/jwks.json
 ```
+
+## 2. CREATE IAM ROLE FOR POD (IRSA ROLE)
+Trust Policy (CRITICAL)
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/oidc.eks.region.amazonaws.com/id/EXAMPLE"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "oidc.eks.region.amazonaws.com/id/EXAMPLE:sub": "system:serviceaccount:default:my-sa"
+        }
+      }
+    }
+  ]
+}
+```
+🔍 Important Condition Explained:
+```text
+sub = system:serviceaccount:<namespace>:<serviceaccount-name>
+```
+This binds:   
+👉 ONLY that ServiceAccount can assume the role  
+
+## CREATE KUBERNETES SERVICE ACCOUNT
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-sa
+  namespace: default
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::<ACCOUNT_ID>:role/MyIRSARole
+```
+🔥 **What this annotation does:**
+It tells Kubernetes:  
+👉 “When a Pod uses this ServiceAccount, inject AWS identity logic”
+
+
+
+
+
+
