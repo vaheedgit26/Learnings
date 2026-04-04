@@ -66,3 +66,58 @@ This is the most important part.
 👉 Replace:
 * `<namespace>` → e.g. `argocd`
 * `<service-account>` → e.g. `argocd-application-controller`
+
+**Attach policy to role:**  
+```bash
+aws iam attach-role-policy \
+  --role-name EKS-IRSA-Role \
+  --policy-arn arn:aws:iam::<ACCOUNT_ID>:policy/EKS-S3-Access
+```
+
+## ✅ Step 4: Create Kubernetes Service Account  
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-service-account
+  namespace: default
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::<ACCOUNT_ID>:role/EKS-IRSA-Role
+```
+Apply it:  
+```bash
+kubectl apply -f sa.yaml
+```
+
+## ✅ Step 5: Use in Pod  
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  serviceAccountName: my-service-account
+  containers:
+  - name: app
+    image: amazonlinux
+    command: ["sleep", "3600"]
+```
+## 🔁 What Happens Behind the Scenes
+```text
+Pod → ServiceAccount → OIDC JWT Token
+    → AWS STS (AssumeRoleWithWebIdentity)
+    → IAM Role → Temporary Credentials
+```
+---
+##🧠 Trust Policy Deep Explanation (Interview Gold)
+---
+This line is critical: 
+```json
+"<OIDC_PROVIDER>:sub": "system:serviceaccount:default:my-service-account"
+```
+👉 Meaning:  
+* Only this exact service account can assume the role
+* Prevents privilege escalation
+
