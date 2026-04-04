@@ -313,7 +313,7 @@ Now Pod can:
 
 👉 WRONG    
 ✔ Token is short-lived & rotated     
----
+
 ## 🔥 ULTRA IMPORTANT CONCEPTS TO MEMORIZE
 * JWT signed by Kubernetes API Server
 * AWS verifies using OIDC public key
