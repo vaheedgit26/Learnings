@@ -112,7 +112,15 @@ metadata:
 It tells Kubernetes:  
 👉 “When a Pod uses this ServiceAccount, inject AWS identity logic”
 
-
+## 3. SERVICE ACCOUNT TOKEN (JWT CREATION)
+Now we go deep.  
+---
+🧬 JWT STRUCTURE (ACTUAL FORMAT)
+A Kubernetes ServiceAccount token is a JWT:
+```text
+HEADER.PAYLOAD.SIGNATURE
+```
+---
 
 
 
