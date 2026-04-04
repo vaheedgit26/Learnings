@@ -200,11 +200,15 @@ Temporary Credentials
 ## ⚠️ Common Issues (Real Debugging)
 ❌ Access Denied
 - Check trust policy `sub` exactly matches:
-```text system:serviceaccount:<namespace>:<serviceaccount> ```
+```text
+system:serviceaccount:<namespace>:<serviceaccount>
+```
 
 ❌ No credentials
 - Check annotation exists:
-  ```text eks.amazonaws.com/role-arn ```
+  ```text
+  eks.amazonaws.com/role-arn
+  ```
 
 ## 🧠 Production Tips
 * One IAM role per workload
