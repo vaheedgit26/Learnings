@@ -181,5 +181,119 @@ YAML inside Pod:
 spec:
   serviceAccountName: my-sa
 ```
+🔥 Important:
+👉 Token is mounted via Projected Volume
+👉 Token is rotated automatically
+👉 Token audience = sts.amazonaws.com
+
+🔄 STEP 6: POD USES JWT → CALLS AWS STS
+Inside the Pod:
+
+AWS SDK detects:
+```text
+AWS_ROLE_ARN
+AWS_WEB_IDENTITY_TOKEN_FILE
+```
+
+Then calls:
+```text
+sts:AssumeRoleWithWebIdentity
+```
+
+API Request:
+```text
+POST https://sts.amazonaws.com
+```
+
+With:
+  * RoleArn
+  * WebIdentityToken (JWT)
+  * RoleSessionName
+
+🔍 STEP 7: AWS VALIDATION PROCESS (CRITICAL)
+AWS STS performs:
+1. Validate OIDC Provider
+  * Matches issuer URL
+  * Verifies TLS thumbprint
+
+2. Fetch Public Key
+From:
+```text
+jwks.json
+```
+
+3. Verify JWT Signature
+```text
+Verify using RSA public key
+```
+
+4. Validate Claims
+| Claim | Checked                     |
+| ----- | --------------------------- |
+| iss   | matches OIDC provider       |
+| aud   | must be `sts.amazonaws.com` |
+| sub   | must match IAM trust policy |
+
+## 🎯 STEP 8: TEMPORARY CREDENTIALS ISSUED
+If valid:
+
+AWS returns:
+```json
+{
+  "AccessKeyId": "...",
+  "SecretAccessKey": "...",
+  "SessionToken": "...",
+  "Expiration": "..."
+}
+```
+
+🔁 STEP 9: POD USES TEMP CREDENTIALS  
+Now Pod can:  
+ * Access S3  
+ * Access DynamoDB  
+ * Call any AWS service allowed by IAM role
+
+```text
++-------------------+
+|   Pod (App)       |
+|-------------------|
+| JWT Token         |
+| Service Account   |
++--------+----------+
+         |
+         | (1) AssumeRoleWithWebIdentity
+         v
++------------------------+
+| AWS STS                |
++------------------------+
+         |
+         | (2) Validate JWT
+         v
++------------------------------+
+| OIDC Provider (EKS)          |
+| - issuer URL                 |
+| - public keys (JWKS)         |
++------------------------------+
+         |
+         | (3) Signature Verified
+         |
+         | (4) Check Conditions:
+         |     sub == serviceaccount
+         |
+         v
++------------------------+
+| IAM Role               |
++------------------------+
+         |
+         | (5) Issue Temp Creds
+         v
++------------------------+
+| Pod gets:              |
+| - Access Key           |
+| - Secret Key           |
+| - Session Token        |
++------------------------+
+```
+
 
 
