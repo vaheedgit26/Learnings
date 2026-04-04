@@ -12,6 +12,7 @@
 👉 Important:
 * Control plane runs in AWS account (not yours)
 * You only interact via API endpoint
+
 👉 You configure:
 * VPC, Subnets
 * Node Groups (EC2 or Fargate)
