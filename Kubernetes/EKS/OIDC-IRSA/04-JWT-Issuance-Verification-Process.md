@@ -61,7 +61,7 @@ Contains:
 ---
 ## 🔑 Who Creates the Key Pair for ServiceAccount JWTs?  
 Answer:  The Kubernetes API Server (managed by AWS in EKS) creates the key pair.  
-* Private key → used to sign JWT tokens for ServiceAccounts.
+* Private key → used to sign JWT tokens by kubernetes api server for ServiceAccounts.
   * Stored inside the EKS managed control plane.
   * You cannot access it; AWS keeps it secure.
 * Public key → used to verify JWT tokens.
