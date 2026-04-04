@@ -301,13 +301,13 @@ Now Pod can:
 
 👉 WRONG   
 ✔ Pod sends JWT to AWS STS  
----
+
 ❌ Myth:   
 “IAM trusts Kubernetes”  
 
 👉 WRONG   
 ✔ IAM trusts OIDC provider   
----
+
 ❌ Myth:   
 “Token is static”   
 
