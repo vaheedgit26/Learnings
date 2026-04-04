@@ -296,22 +296,13 @@ Now Pod can:
 +------------------------+
 ```
 ## ⚠️ COMMON INTERVIEW TRAPS (VERY IMPORTANT)
-❌ Myth: 
-“API server sends JWT to AWS”  
-
-👉 WRONG   
+❌ Myth: “API server sends JWT to AWS” (WRONG)
 ✔ Pod sends JWT to AWS STS  
----
-❌ Myth:   
-“IAM trusts Kubernetes”  
 
-👉 WRONG   
+❌ Myth: “IAM trusts Kubernetes” (WRONG) 
 ✔ IAM trusts OIDC provider   
 
-❌ Myth:   
-“Token is static”   
-
-👉 WRONG    
+❌ Myth: “Token is static” (WRONG)    
 ✔ Token is short-lived & rotated     
 
 ## 🔥 ULTRA IMPORTANT CONCEPTS TO MEMORIZE
