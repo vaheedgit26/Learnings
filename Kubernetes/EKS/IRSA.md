@@ -27,6 +27,6 @@ Using IAM Roles for Service Accounts:
 * Pod uses a Kubernetes Service Account
 * Service account is linked to an IAM Role
 * Pod gets a JWT token from OIDC provider
-* Calls AWS STS: `AssumeRoleWithWebIdentity`
+* Calls AWS STS: `**AssumeRoleWithWebIdentity**`
 * AWS validates token via OIDC
 * Temporary credentials are returned
