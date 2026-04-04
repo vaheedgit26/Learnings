@@ -210,7 +210,7 @@ With:
   * WebIdentityToken (JWT)
   * RoleSessionName
 
-🔍 STEP 7: AWS VALIDATION PROCESS (CRITICAL)
+## 🔍 STEP 7: AWS VALIDATION PROCESS (CRITICAL)
 AWS STS performs:
 1. Validate OIDC Provider
   * Matches issuer URL
@@ -247,7 +247,7 @@ AWS returns:
 }
 ```
 
-🔁 STEP 9: POD USES TEMP CREDENTIALS  
+## 🔁 STEP 9: POD USES TEMP CREDENTIALS  
 Now Pod can:  
  * Access S3  
  * Access DynamoDB  
@@ -294,6 +294,38 @@ Now Pod can:
 | - Session Token        |
 +------------------------+
 ```
+## ⚠️ COMMON INTERVIEW TRAPS (VERY IMPORTANT)
+❌ **Myth:**
+“API server sends JWT to AWS”
 
+👉 WRONG  
+✔ Pod sends JWT to AWS STS  
+---
+❌ Myth:
 
+“IAM trusts Kubernetes”
 
+👉 WRONG
+✔ IAM trusts OIDC provider
+---
+❌ Myth:
+
+“Token is static”
+
+👉 WRONG
+✔ Token is short-lived & rotated
+---
+## 🔥 ULTRA IMPORTANT CONCEPTS TO MEMORIZE
+* JWT signed by Kubernetes API Server
+* AWS verifies using OIDC public key
+* Trust defined via IAM Role trust policy
+* Pod uses AssumeRoleWithWebIdentity
+* NO static credentials anywhere
+
+## 🧠 MENTAL MODEL (LOCK THIS IN)
+```text
+Kubernetes = Identity Provider
+OIDC = Bridge
+AWS STS = Verifier + Credential Issuer
+Pod = Client
+```
