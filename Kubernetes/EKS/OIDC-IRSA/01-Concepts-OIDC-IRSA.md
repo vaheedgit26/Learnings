@@ -1,4 +1,4 @@
-###  IRSA in EKS
+###  OIDC and IRSA in EKS
 ---
 Q: What is `IRSA`?  
 `IRSA  = IAM Roles for Service Account`
