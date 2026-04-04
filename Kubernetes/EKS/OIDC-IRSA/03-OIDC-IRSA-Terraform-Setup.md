@@ -182,7 +182,7 @@ aws sts get-caller-identity
 ```
 👉 You should see the IAM role ARN, not node role.
 
-🔁 Full Flow Recap
+## 🔁 Full Flow Recap
 ```text
 Pod
  ↓
@@ -211,3 +211,6 @@ Temporary Credentials
 * Never use * in trust policy
 * Use namespaces for isolation
 * Audit with CloudTrail
+
+## ⚡ Final Summary
+👉 Terraform + IRSA in Amazon EKS enables secure, fine-grained AWS access from pods without static credentials, using OIDC and STS.
