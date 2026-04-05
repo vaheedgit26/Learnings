@@ -3,7 +3,7 @@
 Q: What is `IRSA`?  
 `IRSA  = IAM Roles for Service Account`
 >  Amazon EKS that allows a Kubernetes Pod to securely access AWS services using an IAM Role — without using static credentials.
->  Using IRSA we bind an IAM Role to kubernetes Service Account via OIDC allowing it to assume the IAM Role ("sts:AssumeRoleWithWebIdentity") without static credentials.
+>  Using IRSA we bind an IAM Role to kubernetes Service Account via OIDC allowing it to assume the IAM Role ("sts:AssumeRoleWithWebIdentity") without static credentials.  
 ✅ Simple Definition  
 > IRSA lets a Kubernetes Service Account assume an IAM Role using a JWT token + OIDC federation, so Pods get temporary AWS credentials automatically.  
 
