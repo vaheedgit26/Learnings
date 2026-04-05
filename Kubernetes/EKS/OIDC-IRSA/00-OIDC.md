@@ -57,4 +57,56 @@ AssumeRoleWithWebIdentity
 ```
 and sends: **`JWT token`**
 
+## 🔍 Step 4: AWS verification (THIS is where thumbprint is used)  
+AWS does:  
+✅ **1. Extract issuer from JWT**
+```text
+iss = https://token.actions.githubusercontent.com
+```
+
+✅ **2. Connects to OIDC provider URL** 
+AWS makes HTTPS call to:  
+```text
+https://token.actions.githubusercontent.com
+```
+
+✅ **3. TLS handshake happens**  
+During this:  
+* AWS receives SSL certificate chain  
+* Extracts root CA certificate
+
+✅ **4. AWS computes fingerprint**
+AWS internally:   
+```text
+Root CA Certificate → SHA-1 → fingerprint
+```
+
+✅ **5. Compare with stored thumbprint**  
+```text 
+Computed fingerprint == Stored thumbprint ?
+```
+✔️ If match → trusted connection  
+❌ If mismatch → reject  
+
+✅ **6. Validate JWT**  
+Now AWS checks:  
+* `iss` matches registered provider  
+* `aud` matches `sts.amazonaws.com`  
+* Signature using JWKs (public keys)
+
+✅ **7. Issue credentials**  
+If all valid:  
+👉 AWS STS returns temporary credentials  
+
+🧠 Key Insight (VERY IMPORTANT)  
+> The thumbprint is used to verify the TLS connection to the OIDC provider,
+NOT the JWT itself.
+
+## 🔥 Corrected version of your statement  
+Here is the perfect version 👇    
+> “When we create an OIDC provider in AWS, AWS stores the issuer URL, audience, and the thumbprint of  
+> the provider’s root CA certificate. When GitHub sends a JWT to AWS STS, AWS connects to the OIDC issuer URL,  
+> verifies the TLS certificate using the stored thumbprint,  
+> and then validates the JWT claims like issuer and audience before issuing temporary credentials.”  
+
 
