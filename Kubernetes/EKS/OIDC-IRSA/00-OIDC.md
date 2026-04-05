@@ -70,7 +70,7 @@ During this:
 * AWS receives SSL certificate chain  
 * Extracts root CA certificate
 
-✅ **4. AWS computes fingerprint**
+✅ **4. AWS computes fingerprint**   
 AWS internally:   
 ```text
 Root CA Certificate → SHA-1 → fingerprint
