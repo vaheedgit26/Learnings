@@ -38,5 +38,23 @@ It contains mainly 3 inputs
 👉 Amazon Web Services stores:   
 * Issuer URL (`https://token.actions.githubusercontent.com`)  
 * Allowed audience (`sts.amazonaws.com`)  
-* Thumbprint (of CA certificate)  
+* Thumbprint (of CA certificate)
+
+## 🔑 Step 2: GitHub issues JWT  
+GitHub generates a token like:  
+```json
+{
+  "iss": "https://token.actions.githubusercontent.com",
+  "aud": "sts.amazonaws.com",
+  "sub": "repo:org/repo:ref:refs/heads/main"
+}
+```
+
+## 🚀 Step 3: GitHub calls AWS STS  
+It calls:  
+```text
+AssumeRoleWithWebIdentity
+```
+and sends: **`JWT token`**
+
 
