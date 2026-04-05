@@ -29,7 +29,7 @@ It contains mainly 3 inputs
 > 3. thumbprint-list  `(In Terrform: thumbprint_list)`
 
 **Whenever you create/register an OIDC provider in AWS it does the following:**   
-👉 Amazon Web Services stores:   
+👉 **`AWS`** stores:   
 * Issuer URL (`https://token.actions.githubusercontent.com`)  
 * Allowed audience (`sts.amazonaws.com`)  
 * Thumbprint (of CA certificate)
