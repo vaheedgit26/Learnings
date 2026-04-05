@@ -97,7 +97,7 @@ If all valid:
 > The thumbprint is used to verify the TLS connection to the OIDC provider,
 NOT the JWT itself.
 
-## 🔥 Corrected version of your statement  
+## 🔥 Correct version of statement  
 Here is the perfect version 👇    
 > “When we create an OIDC provider in AWS, AWS stores the issuer URL, audience, and the thumbprint of  
 > the provider’s root CA certificate. When GitHub sends a JWT to AWS STS, AWS connects to the OIDC issuer URL,  
