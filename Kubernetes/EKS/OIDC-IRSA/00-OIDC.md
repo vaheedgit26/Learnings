@@ -98,7 +98,7 @@ Now AWS checks:
 If all valid:  
 👉 AWS STS returns temporary credentials  
 
-🧠 Key Insight (VERY IMPORTANT)  
+## 🧠 Key Insight (VERY IMPORTANT)  
 > The thumbprint is used to verify the TLS connection to the OIDC provider,
 NOT the JWT itself.
 
