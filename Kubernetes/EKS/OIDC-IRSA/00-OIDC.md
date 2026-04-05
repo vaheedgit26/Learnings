@@ -27,7 +27,7 @@ resource "aws_iam_openid_connect_provider" "eks" {
   }
 }
 ```
-`Note: Creation of OIDC provider means actually registering the external OIDC provider(GitHub/EKS) in **AWS**`    
+`Note: Creation of OIDC provider means actually registering the external OIDC provider(GitHub/EKS) in **AWS** `    
 ## Important
 It contains mainly 3 inputs
 > 1. url              `(In Terraform: url)`
