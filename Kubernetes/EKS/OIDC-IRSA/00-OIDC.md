@@ -33,3 +33,10 @@ It contains mainly 3 inputs
 > 1. url              `(In Terraform: url)`
 > 2. client-id-list   `(In Terraform: client_id_list)`
 > 3. thumbprint-list  `(In Terrform: thumbprint_list)`
+
+**Whenever you create an OIDC provider in AWS it does the following:** 
+👉 Amazon Web Services stores:   
+* Issuer URL (https://token.actions.githubusercontent.com)  
+* Allowed audience (sts.amazonaws.com)  
+* Thumbprint (of CA certificate)  
+
