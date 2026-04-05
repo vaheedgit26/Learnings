@@ -156,7 +156,7 @@ RSA-SHA256(
 )
 ```
 
-🔐 **WHO SIGNS THE TOKEN?**
+🔐 **WHO SIGNS THE TOKEN?**  
 👉 Kubernetes API Server
 How?
 * Uses private key stored in control plane
@@ -181,10 +181,10 @@ YAML inside Pod:
 spec:
   serviceAccountName: my-sa
 ```
-🔥 Important:
-👉 Token is mounted via Projected Volume
-👉 Token is rotated automatically
-👉 Token audience = sts.amazonaws.com
+🔥 Important:  
+👉 Token is mounted via Projected Volume  
+👉 Token is rotated automatically  
+👉 Token audience = sts.amazonaws.com   
 
 ## 🔄 STEP 6: POD USES JWT → CALLS AWS STS
 Inside the Pod:
