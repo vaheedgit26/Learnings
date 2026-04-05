@@ -36,7 +36,7 @@ It contains mainly 3 inputs
 
 **Whenever you create an OIDC provider in AWS it does the following:**   
 👉 Amazon Web Services stores:   
-* Issuer URL (https://token.actions.githubusercontent.com)  
-* Allowed audience (sts.amazonaws.com)  
+* Issuer URL (`https://token.actions.githubusercontent.com`)  
+* Allowed audience (`sts.amazonaws.com`)  
 * Thumbprint (of CA certificate)  
 
