@@ -6,7 +6,10 @@ Q: What is `IRSA`?
 >  Using IRSA we bind an IAM Role to kubernetes Service Account via OIDC allowing it to assume the IAM Role ("sts:AssumeRoleWithWebIdentity") without static credentials.
 
 ✅ Simple Definition  
-> IRSA lets a Kubernetes Service Account assume an IAM Role using a JWT token + OIDC federation, so Pods get temporary AWS credentials automatically.  
+> IRSA lets a Kubernetes Service Account assume an IAM Role using a JWT token + OIDC federation, so Pods get temporary AWS credentials automatically.
+```text
+IAM Role ---> ServiceAccount ---> POD
+```
 
 Q: What is `OIDC`?  
 `OIDC = Open ID Connect`
