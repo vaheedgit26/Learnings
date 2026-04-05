@@ -35,7 +35,7 @@ It contains mainly 3 inputs
 * Thumbprint (of CA certificate)
 
 ## 🔑 Step 2: GitHub issues JWT  
-( in EKS, kubernetes API-SERVER issues JWT )
+( in EKS, kubernetes API-SERVER issues JWT )  
 GitHub generates a token like:  
 ```json
 {
