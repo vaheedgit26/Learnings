@@ -102,6 +102,6 @@ Here is the perfect version 👇
 > “When we create an OIDC provider in AWS, AWS stores the **`issuer URL`**, **`audience`**, and the **`thumbprint`** of  
 > the provider’s root CA certificate. When GitHub sends a JWT to AWS STS, AWS connects to the OIDC issuer URL,  
 > verifies the TLS certificate using the stored thumbprint,  
-> and then validates the JWT claims like issuer and audience before issuing temporary credentials.”  
+> and then validates the JWT claims like **`issuer`** and **`audience`** before issuing temporary credentials.”  
 
 
