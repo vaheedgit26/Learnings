@@ -1,6 +1,6 @@
 ###  CREATE OIDC provider and the COMPLETE flow
 ---
-## Create OIDC provider 
+## Step 1: Create OIDC provider 
 **Manually (Example for Github)**     
 ```bash
 aws iam create-open-id-connect-provider \
