@@ -1,6 +1,7 @@
-### CREATE OIDC provider and the COMPLETE flow
+###  CREATE OIDC provider and the COMPLETE flow
 ---
-## Create OIDC provider manually (Example for Github)
+## Create OIDC provider 
+**Manually (Example for Github)**     
 ```bash
 aws iam create-open-id-connect-provider \
   --url https://token.actions.githubusercontent.com \
